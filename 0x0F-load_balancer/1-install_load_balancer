@@ -5,19 +5,19 @@
 # Make sure that HAProxy can be managed via an init script
 # Install and configure HAproxy on my lb-01 server.
 sudo apt-get -y update
-sudo apt-get -y install haproxy
+apt-get -y install haproxy
 
 # edit config file
 server_config=\
 "
-frontend dasilva-frontend
+frontend  yonas-frontend
         bind *:80
         mode http
-        default_backend dasilva-backend
-backend dasilva-backend
+        default_backend yonas-backend
+backend yonas-backend
         balance roundrobin
-        server 71109-web-01 54.144.46.99:80 check
-        server 71109-web-02 54.209.42.65:80 check
+        server 63210-web-01 100.25.19.204:80 check
+        server 63210-web-02 54.157.159.85:80 check
 "
 echo "$server_config" | sudo tee -a /etc/haproxy/haproxy.cfg
 
